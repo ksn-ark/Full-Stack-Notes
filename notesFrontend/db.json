@@ -1,0 +1,84 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "content": "HTML is easy",
+      "important": false
+    },
+    {
+      "id": 2,
+      "content": "Browser can execute only JavaScript",
+      "important": false
+    },
+    {
+      "id": 3,
+      "content": "GET and POST are the most important methods of HTTP protocol",
+      "important": true
+    },
+    {
+      "content": "nice",
+      "important": false,
+      "id": 4
+    },
+    {
+      "content": "test",
+      "important": true,
+      "id": 5
+    },
+    {
+      "content": "tes 2",
+      "important": false,
+      "id": 6
+    },
+    {
+      "content": "test 4",
+      "important": true,
+      "id": 7
+    },
+    {
+      "content": "imp?",
+      "important": true,
+      "id": 8
+    },
+    {
+      "content": "no imp?",
+      "important": false,
+      "id": 9
+    },
+    {
+      "content": "nice",
+      "important": true,
+      "id": 10
+    },
+    {
+      "content": "tt",
+      "important": false,
+      "id": 11
+    },
+    {
+      "content": "khjk",
+      "important": false,
+      "id": 12
+    },
+    {
+      "content": "jklk",
+      "important": true,
+      "id": 13
+    },
+    {
+      "content": "fasdfas",
+      "important": false,
+      "id": 14
+    },
+    {
+      "content": "truly one is one and two is two but what is three",
+      "important": true,
+      "id": 15
+    },
+    {
+      "content": "nice",
+      "important": true,
+      "id": 16
+    }
+  ]
+}
