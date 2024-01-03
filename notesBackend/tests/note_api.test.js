@@ -1,15 +1,12 @@
+const bcrypt = require('bcrypt')
 const supertest = require('supertest')
 const mongoose = require('mongoose')
 const helper = require('./test_helper')
 const app = require('../app')
 const api = supertest(app)
-const bcrypt = require('bcrypt')
 
-const User = require('../models/user')
 const Note = require('../models/note')
-
-const { describe } = require('yargs')
-const { beforeEach } = require('node:test')
+const User = require('../models/user')
 
 beforeEach(async () => {
   await Note.deleteMany({})
@@ -153,7 +150,7 @@ describe('when there is initially one user in db', () => {
     await api
       .post('/api/users')
       .send(newUser)
-      .expect(200)
+      .expect(201)
       .expect('Content-Type', /application\/json/)
 
     const usersAtEnd = await helper.usersInDb()
