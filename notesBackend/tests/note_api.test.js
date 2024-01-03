@@ -4,8 +4,13 @@ const mongoose = require('mongoose')
 const helper = require('./test_helper')
 const app = require('../app')
 const api = supertest(app)
+const bcrypt = require('bcrypt')
 
+const User = require('../models/user')
 const Note = require('../models/note')
+
+const { describe } = require('yargs')
+const { beforeEach } = require('node:test')
 
 beforeEach(async () => {
   await Note.deleteMany({})
@@ -112,6 +117,40 @@ test('a note can be deleted', async () => {
   const contents = notesAtEnd.map(r => r.content)
 
   expect(contents).not.toContain(noteToDelete.content)
+})
+
+describe('when there is initially one user in db', () => {
+  beforeEach(async () => {
+    await User.deleteMany({})
+
+    const passwordHash = await bcrypt.hash('heycoolnicepasswordbro', 10)
+    const user = new User({ username: 'nice', passwordHash })
+
+    await user.save()
+  })
+
+  test('creation suceeeds with a fresh username', async () => {
+    const usersAtStart = await helper.usersInDb()
+
+    const newUser = {
+      username: 'nicer',
+      name: 'nicer nice',
+      password: 'trustmethisisagoodpassword',
+    }
+
+    await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
+
+    const usersAtEnd = await helper.usersInDb()
+
+    expect(usersAtEnd).toHaveLength(usersAtStart.length + 1)
+
+    const usernames = usersAtEnd.map((u) => u.username)
+    expect(usernames).toContain(newUser.username)
+  })
 })
 
 afterAll(async () => {
