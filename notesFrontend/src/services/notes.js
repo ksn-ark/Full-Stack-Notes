@@ -1,19 +1,22 @@
-import axios from "axios";
-const baseUrl = "/api/notes";
+import axios from 'axios'
+const isDevelopment = import.meta.env.MODE === 'development'
+const baseUrl = isDevelopment
+  ? import.meta.env.VITE_DEVELOPMENT_PATH || 'http://localhost:3001/api/notes'
+  : '/api/notes'
 
 const getAll = () => {
-  const request = axios.get(baseUrl);
-  return request.then((response) => response.data);
-};
+  const request = axios.get(baseUrl)
+  return request.then((response) => response.data)
+}
 
 const create = (newObject) => {
-  const request = axios.post(baseUrl, newObject);
-  return request.then((response) => response.data);
-};
+  const request = axios.post(baseUrl, newObject)
+  return request.then((response) => response.data)
+}
 
 const update = (id, newObject) => {
-  const request = axios.put(`${baseUrl}/${id}`, newObject);
-  return request.then((response) => response.data);
-};
+  const request = axios.put(`${baseUrl}/${id}`, newObject)
+  return request.then((response) => response.data)
+}
 
-export default { getAll, create, update };
+export default { getAll, create, update }
