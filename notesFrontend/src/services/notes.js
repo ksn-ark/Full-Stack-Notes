@@ -1,8 +1,6 @@
 import axios from 'axios'
-const isDevelopment = import.meta.env.MODE === 'development'
-const baseUrl = isDevelopment
-  ? import.meta.env.VITE_DEVELOPMENT_NOTES_PATH || '/api/notes'
-  : '/api/notes'
+
+const baseUrl = '/api/notes'
 
 let token = null
 
