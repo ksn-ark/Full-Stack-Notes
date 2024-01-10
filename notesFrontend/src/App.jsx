@@ -110,7 +110,7 @@ const App = () => {
       <h1>Notes</h1>
       <Notification message={errorMessage} />
       {!user ? (
-        <Togglable showButtonLabel="login" hideButtonLabel="cancel">
+        <Togglable showButtonLabel="log in" hideButtonLabel="cancel">
           <LoginForm
             handleLogin={handleLogin}
             username={username}
@@ -121,7 +121,7 @@ const App = () => {
         </Togglable>
       ) : (
         <>
-          <p>{user.name}</p>
+          <p>{user.name} logged in</p>
           <Togglable
             showButtonLabel="new note"
             hideButtonLabel="cancel"
@@ -139,12 +139,12 @@ const App = () => {
       <ul>
         {notesToShow
           ? notesToShow.map((note) => (
-            <Note
-              key={note.id}
-              note={note}
-              toggleImportance={() => toggleImportanceOf(note.id)}
-            />
-          ))
+              <Note
+                key={note.id}
+                note={note}
+                toggleImportance={() => toggleImportanceOf(note.id)}
+              />
+            ))
           : notesToShow}
       </ul>
       <Footer />

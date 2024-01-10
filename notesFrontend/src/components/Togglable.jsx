@@ -8,6 +8,10 @@ const Togglable = forwardRef((props, refs) => {
   const hideWhenVisible = { display: visible ? 'none' : '' }
   const showWhenVisible = { display: visible ? '' : 'none' }
 
+  const hideButtonLabel = props.hideButtonLabel
+    ? props.hideButtonLabel
+    : 'cancel'
+
   const toggleVisibility = () => {
     setVisible(!visible)
   }
@@ -23,9 +27,9 @@ const Togglable = forwardRef((props, refs) => {
       <div style={hideWhenVisible}>
         <button onClick={toggleVisibility}>{props.showButtonLabel}</button>
       </div>
-      <div style={showWhenVisible}>
+      <div style={showWhenVisible} className="togglableContent">
         {props.children}
-        <button onClick={toggleVisibility}>{props.hideButtonLabel}</button>
+        <button onClick={toggleVisibility}>{hideButtonLabel}</button>
       </div>
     </div>
   )
@@ -33,7 +37,7 @@ const Togglable = forwardRef((props, refs) => {
 
 Togglable.propTypes = {
   hideButtonLabel: PropTypes.string.isRequired,
-  showButtonLabel: PropTypes.string.isRequired,
+  showButtonLabel: PropTypes.string,
 }
 
 Togglable.displayName = 'Togglable'
